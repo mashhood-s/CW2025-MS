@@ -21,6 +21,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
+import javafx.scene.control.Button;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,6 +42,12 @@ public class GuiController implements Initializable {
     @FXML
     private GameOverPanel gameOverPanel;
 
+    @FXML
+    private StartPanel startPanel;
+
+    @FXML
+    private Button startButton;
+
     private Rectangle[][] displayMatrix;
 
     private InputEventListener eventListener;
@@ -55,9 +62,15 @@ public class GuiController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        startButton.setOnAction(event-> {
+            startPanel.setVisible(false);
+            startButton.setVisible(false);
+            timeLine.play();
+            gamePanel.requestFocus();
+        });
+
         Font.loadFont(getClass().getClassLoader().getResource("digital.ttf").toExternalForm(), 38);
-        gamePanel.setFocusTraversable(true);
-        gamePanel.requestFocus();
         gamePanel.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
@@ -121,7 +134,7 @@ public class GuiController implements Initializable {
                 ae -> moveDown(new MoveEvent(EventType.DOWN, EventSource.THREAD))
         ));
         timeLine.setCycleCount(Timeline.INDEFINITE);
-        timeLine.play();
+        timeLine.stop();
     }
 
     private Paint getFillColor(int i) {
@@ -195,7 +208,6 @@ public class GuiController implements Initializable {
             }
             refreshBrick(downData.getViewData());
         }
-        gamePanel.requestFocus();
     }
 
     public void setEventListener(InputEventListener eventListener) {
@@ -215,7 +227,6 @@ public class GuiController implements Initializable {
         timeLine.stop();
         gameOverPanel.setVisible(false);
         eventListener.createNewGame();
-        gamePanel.requestFocus();
         timeLine.play();
         isPause.setValue(Boolean.FALSE);
         isGameOver.setValue(Boolean.FALSE);
