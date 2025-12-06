@@ -4,6 +4,8 @@ import com.comp2042.board.operations.DownData;
 
 public interface InputEventListener {
 
+    DownData onDropEvent(MoveEvent event);
+
     DownData onDownEvent(MoveEvent event);
 
     ViewData onLeftEvent(MoveEvent event);

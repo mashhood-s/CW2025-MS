@@ -40,6 +40,28 @@ public class BaseBoard implements Board {
         }
     }
 
+    @Override
+    public boolean dropBrick() {
+        boolean conflict = false;
+        int height = 0;
+        Point p = new Point(currentOffset);
+
+        while (!conflict) {
+            p.translate(0,1);
+            int[][] currentMatrix = MatrixOperations.copy(currentGameMatrix);
+            conflict = MatrixOperations.intersect(currentMatrix, brickRotator.getCurrentShape(), (int) p.getX(), (int) p.getY());
+            if (!conflict) {
+                height++;
+            }
+        }
+
+        if (height>0) {
+            currentOffset.translate(0, height);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     @Override
     public boolean moveBrickLeft() {

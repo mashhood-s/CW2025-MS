@@ -7,6 +7,8 @@ public interface Board {
 
     boolean moveBrickDown();
 
+    boolean dropBrick();
+
     boolean moveBrickLeft();
 
     boolean moveBrickRight();
