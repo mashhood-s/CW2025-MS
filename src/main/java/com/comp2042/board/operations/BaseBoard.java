@@ -7,7 +7,7 @@ import com.comp2042.logic.bricks.RandomBrickGenerator;
 
 import java.awt.*;
 
-public class SimpleBoard implements Board {
+public class BaseBoard implements Board {
 
     private final int width;
     private final int height;
@@ -17,7 +17,7 @@ public class SimpleBoard implements Board {
     private Point currentOffset;
     private final Score score;
 
-    public SimpleBoard(int width, int height) {
+    public BaseBoard(int width, int height) {
         this.width = width;
         this.height = height;
         currentGameMatrix = new int[width][height];
