@@ -1,6 +1,10 @@
 package com.comp2042.game.application;
 
 import com.comp2042.*;
+import com.comp2042.board.operations.Board;
+import com.comp2042.board.operations.ClearRow;
+import com.comp2042.board.operations.DownData;
+import com.comp2042.board.operations.SimpleBoard;
 
 public class GameController implements InputEventListener {
 

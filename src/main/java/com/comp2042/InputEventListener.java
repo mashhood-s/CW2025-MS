@@ -1,5 +1,7 @@
 package com.comp2042;
 
+import com.comp2042.board.operations.DownData;
+
 public interface InputEventListener {
 
     DownData onDownEvent(MoveEvent event);
